@@ -274,7 +274,7 @@ feature_3 = st.sidebar.number_input("Low Price ($)",
 
 feature_4 = st.sidebar.number_input("Trading Volume", 
     min_value=0, 
-    max_value=1000000000, 
+    max_value=10000000000, 
     value=0)
 
 # Input validation
