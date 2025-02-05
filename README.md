@@ -11,7 +11,7 @@ This project uses Linear Regression to predict stock market closing price, with 
 - **Handling Missing Values:**  Checked and handled for any missing data.
 - **Remove Outliers:** Used **IQR (Interquartile Range)** to remove or clip the data points outside the acceptable range.
 - **Encoding Categorical Variables:** Convert categorical variables into numerical values using
-**One-Hot Encoding** for nominal values(Company, Ticker) and **Label Encoding** for ordinal values.
+**One-Hot Encoding** for nominal values(Company, Ticker)
 - **Exploratory Data Analysis (EDA):**  Analyzed distributions, correlations, and trends using Data Visualization
 - **Feature Selection:** Used only numerical columns for training.
 ## Features
@@ -19,6 +19,7 @@ This project uses Linear Regression to predict stock market closing price, with 
 - **High:** Highest price during the trading period.
 - **Low:** Lowest price during the trading period.
 - **Volume:** Total number of shares traded.
+- **Ticker** Five separate ticker columns as one-hot encoded columns
 ## Target
 - **Close:** Closing price of the stock.
 ## Requirements
@@ -330,10 +331,10 @@ else:
 
     Network URL: http://192.168.237.103:8502
 - Output Visualization:
-![Image](https://github.com/user-attachments/assets/6202fc3d-41bc-42ba-8c85-840f42a4ea00)
+![Image](https://github.com/user-attachments/assets/742c0950-4c26-4a53-ad62-df62c8470f72)
 
 
-![Image](https://github.com/user-attachments/assets/71fcbe6d-07aa-4796-992b-3fb7c0b1c2ed)
+![Image](https://github.com/user-attachments/assets/d3bb5094-d82f-444d-939f-02f1d5d2a797)
 
   
 
