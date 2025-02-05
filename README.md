@@ -48,11 +48,7 @@ Python script for Model Training
 from sklearn.model_selection import train_test_split
 
 X = final_df[['Open', 'High', 'Low','Volume','Ticker_AAPL',
-       'Ticker_AMZN', 'Ticker_GOOGL', 'Ticker_META', 'Ticker_NFLX',
-       'year_encoded', 'Month_1', 'Month_2', 'Month_3', 'Month_4', 'Month_5',
-       'Month_6', 'Month_7', 'Month_8', 'Month_9', 'Month_10', 'Month_11',
-       'Month_12', 'Day_of_week_Friday', 'Day_of_week_Monday',
-       'Day_of_week_Thursday', 'Day_of_week_Tuesday', 'Day_of_week_Wednesday']]
+       'Ticker_AMZN', 'Ticker_GOOGL', 'Ticker_META', 'Ticker_NFLX']]
 y = final_df['Close']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -137,7 +133,7 @@ for name, model, rmse, mae, r2 in reports:
 
 # REGISTER BEST MODEL
 model_name ='Linear Regressor'
-run_id = '5fdb4f39c93b4e2ea75d3bb83a0edde8'
+run_id = '27d1b2bcb8f34507b4bbef67b31f6d4b'
 model_uri = f'runs:/{run_id}/LR_model'
 
 with mlflow.start_run(run_id=run_id):
@@ -153,7 +149,7 @@ import pickle
 
 # Define model name and version
 model_name = "Linear Regressor"
-model_version = 6# Change if you have a different version
+model_version = 8# Change if you have a different version
 
 # Load the model from MLflow Model Registry
 model_uri = f"models:/{model_name}/{model_version}"
@@ -179,8 +175,6 @@ import streamlit as st
 import pickle
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 
 # Page configuration
@@ -223,7 +217,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Model paths
-model_path = r"C:\Users\Haritha Sree D\.vscode\faang stock analysis\LinearModelnew.pkl"
+model_path = r"C:\Users\Haritha Sree D\.vscode\faang stock analysis\LinearModelnewfaang.pkl"
 
 # Main title with reduced spacing
 st.markdown("# 🚀 FAANG STOCK PRICE PREDICTION")
@@ -291,35 +285,6 @@ feature_4 = st.sidebar.number_input("Trading Volume",
     max_value=10000000000, 
     value=0)
 
-# Temporal features
-day_of_week = st.sidebar.selectbox("Day of Week", ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])
-dow_encoded = {
-    "Monday": [1, 0, 0, 0, 0],
-    "Tuesday": [0, 1, 0, 0, 0],
-    "Wednesday": [0, 0, 1, 0, 0],
-    "Thursday": [0, 0, 0, 1, 0],
-    "Friday": [0, 0, 0, 0, 1]
-}[day_of_week]
-
-month = st.sidebar.selectbox("Month", ["January", "February", "March", "April", "May", "June", 
-                                     "July", "August", "September", "October", "November", "December"])
-month_encoded = {
-    "January": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    "February": [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    "March": [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    "April": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    "May": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-    "June": [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    "July": [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    "August": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-    "September": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    "October": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    "November": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    "December": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-}[month]
-
-year_encoded = st.sidebar.number_input("Year", min_value=2005, max_value=2024, value=2024)
-
 # Input validation
 if feature_3 > feature_2:
     st.error("⚠️ Low price cannot be higher than High price!")
@@ -329,9 +294,8 @@ else:
     # Create input array with all features
     input_features = np.array([[
         feature_1, feature_2, feature_3, feature_4,
-        Ticker_AAPL, Ticker_AMZN, Ticker_GOOGL, Ticker_META, Ticker_NFLX,
-        year_encoded
-    ] + month_encoded + dow_encoded])
+        Ticker_AAPL, Ticker_AMZN, Ticker_GOOGL, Ticker_META, Ticker_NFLX
+    ]])
     
     # Scale the numerical features (first 4 features only)
     numerical_features = input_features[:, :4]
