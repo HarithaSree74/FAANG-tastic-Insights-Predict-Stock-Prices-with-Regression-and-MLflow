@@ -313,11 +313,12 @@ else:
 
     Network URL: http://192.168.237.103:8502
 - Output Visualization:
-   ![Image](https://github.com/user-attachments/assets/8a99aca4-e1c8-4f04-a552-706fa164f293)
+![Image](https://github.com/user-attachments/assets/6202fc3d-41bc-42ba-8c85-840f42a4ea00)
 
 
+![Image](https://github.com/user-attachments/assets/71fcbe6d-07aa-4796-992b-3fb7c0b1c2ed)
 
-   ![Image](https://github.com/user-attachments/assets/63c17a1d-4c0e-4284-a419-8a71bba426a7)
+  
 
 
 
